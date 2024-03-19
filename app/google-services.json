@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "165953321744",
+    "project_id": "pppr-c439f",
+    "storage_bucket": "pppr-c439f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165953321744:android:9c151d2e8524cd12d08395",
+        "android_client_info": {
+          "package_name": "com.example.pppr"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9sEVWnRf5eKyS-Q034QWezGu4-_p9ZEs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
