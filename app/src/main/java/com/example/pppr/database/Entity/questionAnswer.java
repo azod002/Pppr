@@ -21,6 +21,6 @@ public class questionAnswer {
     private int questionId;
 
     @ColumnInfo(name = "content")
-    private int content;
+    private String content;
 
 }

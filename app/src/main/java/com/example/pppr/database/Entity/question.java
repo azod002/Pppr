@@ -14,9 +14,9 @@ public class question {
     private int authorId;
 
     @ColumnInfo(name = "content")
-    private int content;
+    private String content;
 
     @ColumnInfo(name = "title")
-    private int title;
+    private String title;
 
 }
