@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.pppr.Auth.Register;
-import com.example.pppr.Methodics.ListofNY_act;
+import com.example.pppr.Firebase.BSselection;
+import com.example.pppr.Firebase.BrainStorm;
+import com.example.pppr.Methodics.Roomdebug;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent a;
                     savedText = inputField.getText().toString();
-                    a = new Intent(MainActivity.this, MainActivity2.class);
+                    a = new Intent(MainActivity.this, Selectmenu.class);
                     a.putExtra("savedText", savedText);
                     startActivity(a);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -62,7 +64,23 @@ public class MainActivity extends AppCompatActivity {
             childFab2.setOnClickListener(v -> {
                 Intent a;
                 savedText = inputField.getText().toString();
-                a = new Intent(MainActivity.this, ListofNY_act.class);
+                a = new Intent(MainActivity.this, Roomdebug.class);
+                a.putExtra("savedText", savedText);
+                startActivity(a);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            });
+            childFab1.setOnClickListener(v ->{
+                Intent a;
+                savedText = inputField.getText().toString();
+                a = new Intent(MainActivity.this, BrainStorm.class);
+                a.putExtra("savedText", savedText);
+                startActivity(a);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            });
+            childFab3.setOnClickListener(v ->{
+                Intent a;
+                savedText = inputField.getText().toString();
+                a = new Intent(MainActivity.this, BSselection.class);
                 a.putExtra("savedText", savedText);
                 startActivity(a);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

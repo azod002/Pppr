@@ -9,21 +9,18 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.example.pppr.R;
-import com.example.pppr.RecyclerView.MyAdapter;
 import com.example.pppr.RecyclerView.NewAdapter;
 import com.example.pppr.RecyclerView.OnHolderclicked;
 import com.example.pppr.database.AppDatabase;
 import com.example.pppr.database.DatabaseManager;
 import com.example.pppr.database.Entity.MainEntity;
-import com.example.pppr.databinding.ActivityListofNyBinding;
+import com.example.pppr.databinding.ActivityRoomdebugBinding;
+import com.example.pppr.databinding.ActivityRoomdebugBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ListofNY_act extends AppCompatActivity {
+public class Roomdebug extends AppCompatActivity {
     private AppDatabase database;
 
     private NewAdapter adapter2;
@@ -31,7 +28,7 @@ public class ListofNY_act extends AppCompatActivity {
 
 
     private RecyclerView.LayoutManager layoutManager;
-    private ActivityListofNyBinding binding;
+    private ActivityRoomdebugBinding binding;
     private int k = 0;
 
     private int VarNum = -1;
@@ -39,15 +36,15 @@ public class ListofNY_act extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityListofNyBinding.inflate(getLayoutInflater());
+        binding = ActivityRoomdebugBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         String savedtext = getIntent().getStringExtra("savedText");
-        final EditText input = new EditText(ListofNY_act.this);
+        final EditText input = new EditText(Roomdebug.this);
 
         database = DatabaseManager.getInstance(this).getDatabase();
 
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(ListofNY_act.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(Roomdebug.this);
         builder.setMessage("")
                 .setTitle("Введите текст")
                 .setView(input)
@@ -56,8 +53,8 @@ public class ListofNY_act extends AppCompatActivity {
                         String userInput = input.getText().toString();
                         if (k == 1) {
                             MainEntity entity = new MainEntity(VarNum, k, userInput, savedtext);
-                            adapter2.addNewEntity(entity);
                             database.getMainDao().insertMain(entity);
+                            adapter2.addNewEntity(entity);
                         }
                     }
                 });
@@ -73,7 +70,7 @@ public class ListofNY_act extends AppCompatActivity {
             public void onClick(View v) {
                 input.setText(" ");
                 dialog.show();
-                ListofNY_act.this.k = 1;
+                Roomdebug.this.k = 1;
             }
         });
         binding.savedtext.setText(savedtext);
@@ -88,6 +85,8 @@ public class ListofNY_act extends AppCompatActivity {
                 database.getMainDao().delete(mainEntity);
             }
         });
+        layoutManager = new LinearLayoutManager(this);
+        binding.recyclerView1.setLayoutManager(layoutManager);
         binding.recyclerView1.setAdapter(adapter2);
 
     }

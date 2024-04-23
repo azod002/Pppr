@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Methodics.Var2_1">
+    tools:context=".Methodics.dekartsquare">
 
     <EditText
         android:id="@+id/inputField"

@@ -9,12 +9,12 @@ import android.widget.TextView;
 
 import com.example.pppr.R;
 
-public class Var1 extends AppCompatActivity {
+public class ironcube extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.var1);
+        setContentView(R.layout.ironcube);
 
         String savedtext = getIntent().getStringExtra("savedText");
 

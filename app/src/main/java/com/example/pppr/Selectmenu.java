@@ -8,16 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.pppr.Methodics.Var1;
-import com.example.pppr.Methodics.Var2_1;
-import com.example.pppr.Methodics.Var4;
+import com.example.pppr.Methodics.ironcube;
+import com.example.pppr.Methodics.dekartsquare;
+import com.example.pppr.Methodics.ZauProtiv;
+import com.example.pppr.Methodics.Tens;
 
-public class MainActivity2 extends AppCompatActivity {
+public class Selectmenu extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_selectmenu);
 
         String savedtext = getIntent().getStringExtra("savedText");
         Button back = findViewById(R.id.backButton);
@@ -33,7 +34,7 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a;
-                a = new Intent(MainActivity2.this, Var1.class);
+                a = new Intent(Selectmenu.this, ironcube.class);
                 a.putExtra("savedText", savedtext);
                 startActivity(a);
                 overridePendingTransition(R.anim.page_turn_in, R.anim.page_turn_out);
@@ -50,7 +51,7 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a;
-                a = new Intent(MainActivity2.this, Var2_1.class);
+                a = new Intent(Selectmenu.this, dekartsquare.class);
                 a.putExtra("savedText", savedtext);
                 startActivity(a);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -61,7 +62,7 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a;
-                a = new Intent(MainActivity2.this, com.example.pppr.Methodics.var3.class);
+                a = new Intent(Selectmenu.this, Tens.class);
                 a.putExtra("savedText", savedtext);
                 startActivity(a);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -72,7 +73,7 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a;
-                a = new Intent(MainActivity2.this, Var4.class);
+                a = new Intent(Selectmenu.this, ZauProtiv.class);
                 a.putExtra("savedText", savedtext);
                 startActivity(a);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

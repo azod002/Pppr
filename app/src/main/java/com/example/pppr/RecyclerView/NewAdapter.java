@@ -10,9 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pppr.R;
-import com.example.pppr.database.AppDatabase;
-import com.example.pppr.database.DatabaseManager;
 import com.example.pppr.database.Entity.MainEntity;
+import com.example.pppr.databinding.NewViewHolderBinding;
 import com.example.pppr.databinding.NewitemBinding;
 
 
@@ -32,7 +31,7 @@ public class NewAdapter extends RecyclerView.Adapter<NewAdapter.NewViewHolder> {
     @NonNull
     @Override
     public NewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.newviewholder, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.new_view_holder, parent, false);
         return new NewViewHolder(view, this);
     }
 
@@ -53,16 +52,16 @@ public class NewAdapter extends RecyclerView.Adapter<NewAdapter.NewViewHolder> {
     }
 
     class NewViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewTitle, textViewContent;
-        Button buttonLike, buttonDelete;
-        private NewitemBinding binding;
+
+
+        private NewViewHolderBinding binding;
 
 
 
         NewViewHolder(View itemView, NewAdapter adapter) {
             super(itemView);
-            binding = NewitemBinding.bind(itemView);
-            buttonDelete.setOnClickListener(v -> {
+            binding = NewViewHolderBinding.bind(itemView);
+            binding.deleteButton.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
                     MainEntity entity = entities.get(position);

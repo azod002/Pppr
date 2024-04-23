@@ -22,6 +22,8 @@ public interface MainDao {
     @Query("SELECT * FROM main WHERE question = :savedtext AND idofView = :idofView AND varnum = :varnum ")
     List<MainEntity> findallforView(String savedtext,int idofView, int varnum);
 
+    @Query("SELECT * FROM main")
+    List<MainEntity> findAll();
 
 }
 
