@@ -70,12 +70,6 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             });
             childFab1.setOnClickListener(v ->{
-                Intent a;
-                savedText = inputField.getText().toString();
-                a = new Intent(MainActivity.this, BrainStorm.class);
-                a.putExtra("savedText", savedText);
-                startActivity(a);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             });
             childFab3.setOnClickListener(v ->{
                 Intent a;

@@ -33,14 +33,13 @@ public class BrainStorm extends AppCompatActivity {
         binding = ActivityBrainstormBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        String savedtext = getIntent().getStringExtra("savedText");
-        String path = getIntent().getStringExtra("path");
-
-        initviews(savedtext);
-        initRecyclerView();
+        String name = getIntent().getStringExtra("name");
+        System.out.println(name);
+        initviews(name);
+        initRecyclerView(name);
     }
 
-    public void initviews(String s) {
+    public void initviews(String path) {
         binding.buttonSave.setOnClickListener(v -> {
             String contentstr = binding.editTextContent.getText().toString();
             if (contentstr.isEmpty()) {
@@ -48,27 +47,30 @@ public class BrainStorm extends AppCompatActivity {
                 return;
             }
             Content content = new Content(FirebaseAuth.getInstance().getCurrentUser().getUid(), contentstr);
-            BrainStormViewModel.getInstance(this).saveContent(content);
+            BrainStormViewModel.getInstance(this, path).saveContent(content);
         });
 
         binding.backButton.setOnClickListener(v -> {
             finish();
         });
 
-        binding.savedtext.setText(s);
+
     }
 
-    private void initRecyclerView() {
+    private void initRecyclerView(String path) {
         adapter = new ContentAdapter(this);
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        BrainStormViewModel.getInstance(this).getUsersLiveData().observe(this, new Observer<List<Content>>() {
+        BrainStormViewModel.getInstance(this, path).getUsersLiveData().observe(this, new Observer<ContentData>() {
             @Override
-            public void onChanged(List<Content> users) {
-                adapter.update(users);
+            public void onChanged(ContentData contentData) {
+                adapter.update(contentData.getContents());
+                String name = contentData.getName();
+                binding.savedtext.setText(name);
             }
         });
     }
+
 
 }
