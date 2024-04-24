@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Pppr"
         tools:targetApi="31">
         <activity
+            android:name=".Firebase.MakeQuestions"
+            android:exported="false" />
+        <activity
             android:name=".Firebase.BSselection"
             android:exported="false" />
         <activity
