@@ -16,13 +16,14 @@ import java.util.List;
 
 public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder> {
 
-    private List<String> names;
+    private List<Question> questions;
     private LayoutInflater inflater;
     private Context context;
-    public NameAdapter(Context context, List<String> names) {
+
+    public NameAdapter(Context context, List<Question> questions) {
         this.context = context;
         this.inflater = LayoutInflater.from(context);
-        this.names = names;
+        this.questions = questions;
     }
 
     @NonNull
@@ -34,31 +35,30 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull NameViewHolder holder, int position) {
-        String name = names.get(position);
-        holder.text_question.setText(name);
+        Question question = questions.get(position);
+        holder.text_question.setText(question.getName());
+        holder.text_id.setText(question.getId());
         holder.itemView.setOnClickListener(v -> {
             Intent a = new Intent(context, BrainStorm.class);
-            a.putExtra("name", name);
+            a.putExtra("questionId", question.getId());
             context.startActivity(a);
         });
     }
 
     @Override
     public int getItemCount() {
-        return names.size();
+        return questions.size();
     }
 
     public static class NameViewHolder extends RecyclerView.ViewHolder {
-        TextView text_question;
+        TextView text_question, text_id;
 
         public NameViewHolder(@NonNull View itemView) {
             super(itemView);
             text_question = itemView.findViewById(R.id.text_question);
-        }
-
-        public void update(String name) {
-            text_question.setText(name);
+            text_id = itemView.findViewById(R.id.text_id);
         }
     }
 }
+
 

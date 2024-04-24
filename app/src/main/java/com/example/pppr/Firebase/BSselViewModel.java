@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,7 +36,7 @@ import java.util.List;
 
 public class BSselViewModel extends ViewModel {
 
-    private MutableLiveData<List<String>> namesLiveData = new MutableLiveData<>();
+    private MutableLiveData<List<Question>> questionsLiveData = new MutableLiveData<>();
     private DatabaseReference databaseReference;
 
     public BSselViewModel() {
@@ -43,23 +44,43 @@ public class BSselViewModel extends ViewModel {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<String> namesList = new ArrayList<>();
+                List<Question> questionsList = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String name = snapshot.child("name").getValue(String.class);
-                    if (name != null) {
-                        namesList.add(name);
+                    Question question = snapshot.getValue(Question.class);
+                    if (question != null && question.getName() != null) {
+                        questionsList.add(question);
                     }
                 }
-                namesLiveData.setValue(namesList); // Обновляем LiveData
+                questionsLiveData.setValue(questionsList); // Обновляем LiveData
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Обработка возможных ошибок, например, отсутствие доступа к базе данных
+                // Обработка ошибок доступа к базе данных
             }
         });
     }
 
-    public LiveData<List<String>> getNames() {return namesLiveData;}
+    public void deleteUserQuestion() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Question question = snapshot.getValue(Question.class);
+                    if (question != null && question.getId() != null && question.getId().equals(FirebaseAuth.getInstance().getUid())) {
+                        snapshot.getRef().removeValue(); // Удаляем вопрос
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Обработка ошибок доступа к базе данных
+            }
+        });
+    }
+
+    public LiveData<List<Question>> getQuestions() { return questionsLiveData; }
 }
+
 

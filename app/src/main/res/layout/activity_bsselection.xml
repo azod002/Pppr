@@ -7,6 +7,15 @@
     tools:context=".Firebase.BSselection">
 
     <Button
+        android:id="@+id/delete"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:text="del"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
         android:id="@+id/backButton"
         android:layout_width="80dp"
         android:layout_height="50dp"

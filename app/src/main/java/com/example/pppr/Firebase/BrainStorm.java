@@ -3,22 +3,12 @@ package com.example.pppr.Firebase;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Dialog;
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.pppr.Firebase.Content;
-import com.example.pppr.R;
-import com.example.pppr.RecyclerView.NewAdapter;
-import com.example.pppr.database.AppDatabase;
-import com.example.pppr.database.DatabaseManager;
 import com.example.pppr.databinding.ActivityBrainstormBinding;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.List;
 
 
 public class BrainStorm extends AppCompatActivity {
@@ -33,13 +23,13 @@ public class BrainStorm extends AppCompatActivity {
         binding = ActivityBrainstormBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        String name = getIntent().getStringExtra("name");
-        System.out.println(name);
-        initviews(name);
-        initRecyclerView(name);
+        String questionId = getIntent().getStringExtra("questionId");
+        System.out.println(questionId);
+        initviews(questionId);
+        initRecyclerView(questionId);
     }
 
-    public void initviews(String path) {
+    public void initviews(String questionId) {
         binding.buttonSave.setOnClickListener(v -> {
             String contentstr = binding.editTextContent.getText().toString();
             if (contentstr.isEmpty()) {
@@ -47,7 +37,7 @@ public class BrainStorm extends AppCompatActivity {
                 return;
             }
             Content content = new Content(FirebaseAuth.getInstance().getCurrentUser().getUid(), contentstr);
-            BrainStormViewModel.getInstance(this, path).saveContent(content);
+            BrainStormViewModel.getInstance(this, questionId).saveContent(content);
         });
 
         binding.backButton.setOnClickListener(v -> {
@@ -57,12 +47,12 @@ public class BrainStorm extends AppCompatActivity {
 
     }
 
-    private void initRecyclerView(String path) {
+    private void initRecyclerView(String questionId) {
         adapter = new ContentAdapter(this);
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        BrainStormViewModel.getInstance(this, path).getUsersLiveData().observe(this, new Observer<ContentData>() {
+        BrainStormViewModel.getInstance(this, questionId).getUsersLiveData().observe(this, new Observer<ContentData>() {
             @Override
             public void onChanged(ContentData contentData) {
                 adapter.update(contentData.getContents());

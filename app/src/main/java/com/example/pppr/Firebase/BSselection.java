@@ -31,8 +31,8 @@ public class BSselection extends AppCompatActivity {
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         viewModel = new ViewModelProvider(this).get(com.example.pppr.Firebase.BSselViewModel.class);
-        viewModel.getNames().observe(this, names -> {
-            adapter = new NameAdapter(this, names);
+        viewModel.getQuestions().observe(this, questions -> {
+            adapter = new NameAdapter(this, questions);
             binding.recyclerView.setAdapter(adapter);
         });
         binding.backButton.setOnClickListener(v -> {
@@ -42,6 +42,9 @@ public class BSselection extends AppCompatActivity {
             Intent a;
             a = new Intent(BSselection.this, MakeQuestions.class);
             startActivity(a);
+        });
+        binding.delete.setOnClickListener(v -> {
+            viewModel.deleteUserQuestion();
         });
     }
 }
