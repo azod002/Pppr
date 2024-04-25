@@ -11,6 +11,7 @@ import android.widget.EditText;
 import com.example.pppr.Auth.Register;
 import com.example.pppr.Firebase.BSselection;
 import com.example.pppr.Room.RoomDebug;
+import com.example.pppr.Room.database.SelectQuest;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -69,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             });
             childFab1.setOnClickListener(v ->{
+                Intent a;
+                a = new Intent(MainActivity.this, SelectQuest.class);
+                startActivity(a);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             });
             childFab3.setOnClickListener(v ->{
                 Intent a;

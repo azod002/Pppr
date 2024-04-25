@@ -65,6 +65,10 @@ public class RoomDebug extends AppCompatActivity {
             public void onRemoveClicked(ContentDB contentDB) {
                 database.getContentDao().delete(contentDB);
             }
+
+            @Override
+            public void onJustClicked(ContentDB contentDB){
+            }
         });
         layoutManager = new LinearLayoutManager(this);
         binding.recyclerView.setLayoutManager(layoutManager);

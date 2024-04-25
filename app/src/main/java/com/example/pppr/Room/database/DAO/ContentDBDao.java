@@ -28,6 +28,7 @@ public interface ContentDBDao {
     @Query("SELECT * FROM CONTENTDB")
     List<ContentDB> findAll();
 
-
+    @Query("SELECT DISTINCT question FROM ContentDB")
+    List<String> findAllDistinctQuestions();
 
 }

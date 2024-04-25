@@ -52,6 +52,14 @@ public class DBAdapter extends RecyclerView.Adapter<DBAdapter.DBViewHolder> {
         public DBViewHolder(@NonNull View itemView) {
             super(itemView);
             binding =DbViewHolderBinding.bind(itemView);
+
+            binding.getRoot().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ContentDB content = contentDB.get(getAdapterPosition());
+                    callback.onJustClicked(content);
+                }
+            });
             binding.getRoot().setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
