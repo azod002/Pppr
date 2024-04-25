@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pppr.R;
-import com.example.pppr.database.Entity.MainEntity;
 
 import java.util.List;
 

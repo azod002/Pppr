@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import com.example.pppr.Auth.Register;
 import com.example.pppr.Firebase.BSselection;
+import com.example.pppr.Room.RoomDebug;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -60,6 +61,12 @@ public class MainActivity extends AppCompatActivity {
                     childFab3.setVisibility(areFabsVisible ? View.VISIBLE : View.GONE);                }
             });
             childFab2.setOnClickListener(v -> {
+                Intent a;
+                savedText = inputField.getText().toString();
+                a = new Intent(MainActivity.this, RoomDebug.class);
+                a.putExtra("savedText", savedText);
+                startActivity(a);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             });
             childFab1.setOnClickListener(v ->{
             });

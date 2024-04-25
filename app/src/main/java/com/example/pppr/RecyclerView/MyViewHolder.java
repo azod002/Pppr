@@ -7,8 +7,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pppr.R;
-import com.example.pppr.database.AppDatabase;
-import com.example.pppr.database.DatabaseManager;
 
 class MyViewHolder extends RecyclerView.ViewHolder {
     TextView textView;
