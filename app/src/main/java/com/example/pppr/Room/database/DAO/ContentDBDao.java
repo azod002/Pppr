@@ -31,4 +31,7 @@ public interface ContentDBDao {
     @Query("SELECT DISTINCT question FROM ContentDB")
     List<String> findAllDistinctQuestions();
 
+    @Query("DELETE FROM CONTENTDB WHERE question = :question")
+    void deleteall(String question);
+
 }

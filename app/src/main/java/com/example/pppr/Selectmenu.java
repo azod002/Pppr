@@ -34,10 +34,10 @@ public class Selectmenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a;
-                a = new Intent(Selectmenu.this, ironcube.class);
+                a = new Intent(Selectmenu.this, dekartsquare.class);
                 a.putExtra("savedText", savedtext);
                 startActivity(a);
-                overridePendingTransition(R.anim.page_turn_in, R.anim.page_turn_out);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
@@ -51,10 +51,10 @@ public class Selectmenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a;
-                a = new Intent(Selectmenu.this, dekartsquare.class);
+                a = new Intent(Selectmenu.this, ironcube.class);
                 a.putExtra("savedText", savedtext);
                 startActivity(a);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                overridePendingTransition(R.anim.page_turn_in, R.anim.page_turn_out);
 
             }
         });

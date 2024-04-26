@@ -65,7 +65,7 @@ public class SelectQuest extends AppCompatActivity {
         adapter = new DBAdapter(uniqueContentDBList, new OnContentClicked() {
             @Override
             public void onRemoveClicked(ContentDB contentDB) {
-                database.getContentDao().delete(contentDB);
+                database.getContentDao().deleteall(contentDB.getQuestion());
                 //ЗДЕСЬ НАДО СДЕЛАТЬ ТАК ЧТОБЫ ОНО УДАЛЯЛО ВСЕ С question'ом ИЗ БД
 
             }

@@ -38,7 +38,8 @@ android {
 
 dependencies {
 
-
+    implementation("com.github.bumptech.glide:glide:4.13.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.13.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
     implementation("com.google.android.material:material:1.10.0")

@@ -15,69 +15,42 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pppr.RecyclerView.MyAdapter;
 import com.example.pppr.R;
+import com.example.pppr.Room.Callbacks.OnContentClicked;
+import com.example.pppr.Room.DBAdapter;
+import com.example.pppr.Room.database.AppDatabase;
+import com.example.pppr.Room.database.DatabaseManager;
+import com.example.pppr.Room.database.Entity.ContentDB;
+import com.example.pppr.databinding.ActivityDekartsquareBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class dekartsquare extends AppCompatActivity {
 
-    private RecyclerView recyclerView1;
-    private RecyclerView recyclerView2;
-    private RecyclerView recyclerView3;
-    private RecyclerView recyclerView4;
-    private MyAdapter adapter1;
-    private MyAdapter adapter2;
-    private MyAdapter adapter3;
-    private MyAdapter adapter4;
-    private List<String> items1;
-    private List<String> items2;
-    private List<String> items3;
-    private List<String> items4;
+    private ActivityDekartsquareBinding binding;
     private int k = 0;
+    private DBAdapter adapter1;
+    private DBAdapter adapter2;
+    private DBAdapter adapter3;
+    private DBAdapter adapter4;
+    private RecyclerView.LayoutManager layoutManager1;
+    private RecyclerView.LayoutManager layoutManager2;
+    private RecyclerView.LayoutManager layoutManager3;
+    private RecyclerView.LayoutManager layoutManager4;
+    private AppDatabase database;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dekartsquare);
+        binding = ActivityDekartsquareBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         String savedtext = getIntent().getStringExtra("savedText");
 
-
-        recyclerView1 = findViewById(R.id.recycler_view1);
-        recyclerView2 = findViewById(R.id.recycler_view2);
-        recyclerView3 = findViewById(R.id.recycler_view3);
-        recyclerView4 = findViewById(R.id.recycler_view4);
-        TextView view = findViewById(R.id.textView);
-        Button butt1 = findViewById(R.id.button1);
-        Button butt2 = findViewById(R.id.button2);
-        Button butt3 = findViewById(R.id.button3);
-        Button butt4 = findViewById(R.id.button4);
         final EditText input = new EditText(dekartsquare.this);
-        recyclerView1.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView2.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView3.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView4.setLayoutManager(new LinearLayoutManager(this));
-        Button back = findViewById(R.id.backButton);
 
-        view.setText(savedtext);
-        items1 = new ArrayList<>();
-        items2 = new ArrayList<>();
-        items3 = new ArrayList<>();
-        items4 = new ArrayList<>();
-        items1.add("Сильные стороны");
-        items2.add("Недостатки");
-        items3.add("Возможности");
-        items4.add("Угрозы");
-
-        adapter1 = new MyAdapter(items1);
-        recyclerView1.setAdapter(adapter1);
-        adapter2 = new MyAdapter(items2);
-        recyclerView2.setAdapter(adapter2);
-        adapter3 = new MyAdapter(items3);
-        recyclerView3.setAdapter(adapter3);
-        adapter4 = new MyAdapter(items4);
-        recyclerView4.setAdapter(adapter4);
-
+        initDatabase();
+        binding.textView.setText(savedtext);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(dekartsquare.this);
         builder.setMessage("")
@@ -86,54 +59,121 @@ public class dekartsquare extends AppCompatActivity {
                 .setPositiveButton("Ок", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String userInput = input.getText().toString();
-                        if (k == 1) adapter1.addItem(userInput);
-                        else if (k == 2) adapter2.addItem(userInput);
-                        else if (k == 3) adapter3.addItem(userInput);
-                        else if (k == 4) adapter4.addItem(userInput);
+                        if (k == 1){
+                            System.out.println(savedtext + "      " + userInput);
+                            ContentDB content = new ContentDB(savedtext, 1, 1, userInput);
+                            database.getContentDao().insert(content);
+                            adapter1.addNewPublication(content);
+                            input.setText("");
+                        }
+                        else if (k == 2){
+                            System.out.println(savedtext + "      " + userInput);
+                            ContentDB content = new ContentDB(savedtext, 1, 2, userInput);
+                            database.getContentDao().insert(content);
+                            adapter2.addNewPublication(content);
+                            input.setText("");
+                        }
+                        else if (k == 3){
+                            ContentDB content = new ContentDB(savedtext, 1, 3, userInput);
+                            database.getContentDao().insert(content);
+                            adapter3.addNewPublication(content);
+                            input.setText("");
+                        }
+                        else if (k == 4){
+                            ContentDB content = new ContentDB(savedtext, 1, 4, userInput);
+                            database.getContentDao().insert(content);
+                            adapter4.addNewPublication(content);
+                            input.setText("");
+                        }
                     }
                 });
+        initRecyclerView(savedtext);
         AlertDialog dialog = builder.create();
+        binding.button1.setOnClickListener(v -> {
+            dialog.show();
+            k = 1;
+        });
+        binding.button2.setOnClickListener(v -> {
+            dialog.show();
+            k = 2;
+        });
+        binding.button3.setOnClickListener(v -> {
+            dialog.show();
+            k = 3;
+        });
+        binding.button4.setOnClickListener(v -> {
+            dialog.show();
+            k = 4;
+        });
+        binding.backButton.setOnClickListener(v -> {
+            finish();
+        });
 
 
-        butt1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                input.setText(" ");
-                dialog.show();
-                k = 1;
-            }
-        });
-        butt2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                input.setText(" ");
-                dialog.show();
-                k = 2;
-            }
-        });
-        butt3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                input.setText(" ");
-                dialog.show();
-                k = 3;
-            }
-        });
-        butt4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                input.setText(" ");
-                dialog.show();
-                k = 4;
-            }
-        });
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
 
-            }
-        });
     }
+
+    private void initRecyclerView(String savedtext) {
+        List<ContentDB> contentDBList1 = database.getContentDao().selectcontent(savedtext, 1, 1);
+        List<ContentDB> contentDBList2 = database.getContentDao().selectcontent(savedtext, 1, 2);
+        List<ContentDB> contentDBList3 = database.getContentDao().selectcontent(savedtext, 1, 3);
+        List<ContentDB> contentDBList4 = database.getContentDao().selectcontent(savedtext, 1, 4);
+
+        adapter1 = new DBAdapter(contentDBList1, new OnContentClicked() {
+            @Override
+            public void onRemoveClicked(ContentDB contentDB) {
+                database.getContentDao().delete(contentDB);
+            }
+
+            @Override
+            public void onJustClicked(ContentDB contentDB) {
+            }
+        });
+        adapter2 = new DBAdapter(contentDBList2, new OnContentClicked() {
+            @Override
+            public void onRemoveClicked(ContentDB contentDB) {
+                database.getContentDao().delete(contentDB);
+            }
+
+            @Override
+            public void onJustClicked(ContentDB contentDB) {
+            }
+        });
+        adapter3 = new DBAdapter(contentDBList3, new OnContentClicked() {
+            @Override
+            public void onRemoveClicked(ContentDB contentDB) {
+                database.getContentDao().delete(contentDB);
+            }
+
+            @Override
+            public void onJustClicked(ContentDB contentDB) {
+            }
+        });
+        adapter4 = new DBAdapter(contentDBList4, new OnContentClicked() {
+            @Override
+            public void onRemoveClicked(ContentDB contentDB) {
+                database.getContentDao().delete(contentDB);
+            }
+
+            @Override
+            public void onJustClicked(ContentDB contentDB) {
+            }
+        });
+
+        layoutManager1 = new LinearLayoutManager(this);
+        layoutManager2 = new LinearLayoutManager(this);
+        layoutManager3 = new LinearLayoutManager(this);
+        layoutManager4 = new LinearLayoutManager(this);
+        binding.recyclerView1.setLayoutManager(layoutManager1);
+        binding.recyclerView1.setAdapter(adapter1);
+        binding.recyclerView2.setLayoutManager(layoutManager2);
+        binding.recyclerView2.setAdapter(adapter2);
+        binding.recyclerView3.setLayoutManager(layoutManager3);
+        binding.recyclerView3.setAdapter(adapter3);
+        binding.recyclerView4.setLayoutManager(layoutManager4);
+        binding.recyclerView4.setAdapter(adapter4);
+    }
+
+
+    private void initDatabase() {database = DatabaseManager.getInstance(this).getDatabase();}
 }
