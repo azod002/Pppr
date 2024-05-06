@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.pppr.MainActivity;
 import com.example.pppr.databinding.ActivityBsselectionBinding;
@@ -20,6 +21,7 @@ public class BSselection extends AppCompatActivity {
     private ActivityBsselectionBinding binding;
     private BSselViewModel viewModel;
     private NameAdapter adapter;
+    private boolean areFabsVisible;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,17 @@ public class BSselection extends AppCompatActivity {
             startActivity(a);
         });
         binding.delete.setOnClickListener(v -> {
+            viewModel.deleteUserQuestion();
+        });
+        binding.mainFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                areFabsVisible = !areFabsVisible;
+                binding.childFab1.setVisibility(areFabsVisible ? View.VISIBLE : View.GONE);
+                binding.childFab2.setVisibility(areFabsVisible ? View.VISIBLE : View.GONE);
+                binding.childFab3.setVisibility(areFabsVisible ? View.VISIBLE : View.GONE);                }
+        });
+        binding.childFab1.setOnClickListener(v -> {
             viewModel.deleteUserQuestion();
         });
     }

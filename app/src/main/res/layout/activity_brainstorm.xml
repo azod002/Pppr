@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f7e3ae"
     tools:context=".Firebase.BrainStorm">
 
     <ScrollView
@@ -50,7 +51,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="aboba"
-
+        android:textColor="#202d41"
+        android:fontFamily="@font/rosemary"
         android:textSize="25sp"
         app:layout_constraintTop_toBottomOf="@+id/backButton"
         tools:layout_editor_absoluteX="-16dp" />

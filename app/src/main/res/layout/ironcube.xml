@@ -18,15 +18,31 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/view1"
-        android:layout_width="match_parent"
+        android:id="@+id/punchline"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
         android:text="aboba"
-        android:textSize="40sp"
+        android:textColor="#202d41"
+        android:fontFamily="@font/rosemary"
+        android:visibility="invisible"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.407"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gifImageView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/gifImageView"
+        android:layout_width="399dp"
+        android:layout_height="377dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/kost"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/view2"
@@ -34,7 +50,10 @@
         android:layout_height="wrap_content"
         android:text="12345"
         android:gravity="center"
-        android:textSize="25sp"
+        android:fontFamily="@font/rosemary"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#202d41"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.118"
