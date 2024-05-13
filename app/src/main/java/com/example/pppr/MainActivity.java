@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import com.example.pppr.Auth.Register;
 import com.example.pppr.Firebase.BSselection;
+import com.example.pppr.Methodics.AnsFromTime;
 import com.example.pppr.Room.RoomDebug;
 import com.example.pppr.Room.database.SelectQuest;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             childFab2.setOnClickListener(v -> {
                 Intent a;
                 savedText = inputField.getText().toString();
-                a = new Intent(MainActivity.this, RoomDebug.class);
+                a = new Intent(MainActivity.this, AnsFromTime.class);
                 a.putExtra("savedText", savedText);
                 startActivity(a);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

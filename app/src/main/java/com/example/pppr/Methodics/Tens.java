@@ -14,6 +14,11 @@ import android.widget.TextView;
 
 import com.example.pppr.RecyclerView.MyAdapter;
 import com.example.pppr.R;
+import com.example.pppr.Room.Callbacks.OnContentClicked;
+import com.example.pppr.Room.DBAdapter;
+import com.example.pppr.Room.database.AppDatabase;
+import com.example.pppr.Room.database.DatabaseManager;
+import com.example.pppr.Room.database.Entity.ContentDB;
 import com.example.pppr.databinding.ActivityTensBinding;
 import com.example.pppr.databinding.ActivityTensBinding;
 
@@ -21,15 +26,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tens extends AppCompatActivity {
-    private RecyclerView recyclerView1;
-    private RecyclerView recyclerView2;
-    private RecyclerView recyclerView3;
-    private MyAdapter adapter1;
-    private MyAdapter adapter2;
-    private MyAdapter adapter3;
-    private List<String> items1;
-    private List<String> items2;
-    private List<String> items3;
+    private DBAdapter adapter1;
+    private DBAdapter adapter2;
+    private DBAdapter adapter3;
+    private RecyclerView.LayoutManager layoutManager1;
+    private RecyclerView.LayoutManager layoutManager2;
+    private RecyclerView.LayoutManager layoutManager3;
+    private AppDatabase database;
     private int k=0;
 
     private ActivityTensBinding binding;
@@ -40,37 +43,11 @@ public class Tens extends AppCompatActivity {
         binding = ActivityTensBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         String savedtext = getIntent().getStringExtra("savedText");
-
-        Button butt1 = findViewById(R.id.butt1);
-        Button butt2 = findViewById(R.id.butt2);
-        Button butt3 = findViewById(R.id.butt3);
-        Button back = findViewById(R.id.backButton);
-        recyclerView1 = findViewById(R.id.recycler_view1);
-        recyclerView2 = findViewById(R.id.recycler_view2);
-        recyclerView3 = findViewById(R.id.recycler_view3);
-        TextView quest = findViewById(R.id.quest);
-        TextView Savedtext = findViewById(R.id.savedtext);
         final EditText input = new EditText(Tens.this);
-        recyclerView1.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView2.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView3.setLayoutManager(new LinearLayoutManager(this));
 
+        initDatabase();
+        binding.savedtext.setText(savedtext);
 
-
-
-
-        items1 = new ArrayList<>();
-        items2 = new ArrayList<>();
-        items3 = new ArrayList<>();
-        items1.add("10 минут");
-        items2.add("10 часов");
-        items3.add("10 лет");
-        adapter1 = new MyAdapter(items1);
-        recyclerView1.setAdapter(adapter1);
-        adapter2 = new MyAdapter(items2);
-        recyclerView2.setAdapter(adapter2);
-        adapter3 = new MyAdapter(items3);
-        recyclerView3.setAdapter(adapter3);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(Tens.this);
         builder.setMessage("")
@@ -79,40 +56,55 @@ public class Tens extends AppCompatActivity {
                 .setPositiveButton("Ок", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String userInput = input.getText().toString();
-                        if     (k==1)adapter1.addItem(userInput);
-                        else if(k==2)adapter2.addItem(userInput);
-                        else if(k==3)adapter3.addItem(userInput);
+                        if (k == 1){
+                            System.out.println(savedtext + "      " + userInput);
+                            ContentDB content = new ContentDB(savedtext, 2, 1, userInput);
+                            database.getContentDao().insert(content);
+                            adapter1.addNewPublication(content);
+                            input.setText("");
+                        }
+                        else if (k == 2){
+                            System.out.println(savedtext + "      " + userInput);
+                            ContentDB content = new ContentDB(savedtext, 2, 2, userInput);
+                            database.getContentDao().insert(content);
+                            adapter2.addNewPublication(content);
+                            input.setText("");
+                        }
+                        else if (k == 3){
+                            ContentDB content = new ContentDB(savedtext, 2, 3, userInput);
+                            database.getContentDao().insert(content);
+                            adapter3.addNewPublication(content);
+                            input.setText("");
+                        }
+
                     }
                 });
         AlertDialog dialog = builder.create();
-        Savedtext.setText(savedtext);
+        initRecyclerView(savedtext);
 
 
-        butt1.setOnClickListener(new View.OnClickListener() {
+        binding.butt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                input.setText(" ");
                 dialog.show();
                 k=1;
             }
         });
-        butt2.setOnClickListener(new View.OnClickListener() {
+        binding.butt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                input.setText(" ");
                 dialog.show();
                 k=2;
             }
         });
-        butt3.setOnClickListener(new View.OnClickListener() {
+        binding.butt3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                input.setText(" ");
                 dialog.show();
                 k=3;
             }
         });
-        back.setOnClickListener(new View.OnClickListener() {
+        binding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -124,4 +116,56 @@ public class Tens extends AppCompatActivity {
 
 
     }
+
+    private void initRecyclerView(String savedtext) {
+        List<ContentDB> contentDBList1 = database.getContentDao().selectcontent(savedtext, 2, 1);
+        List<ContentDB> contentDBList2 = database.getContentDao().selectcontent(savedtext, 2, 2);
+        List<ContentDB> contentDBList3 = database.getContentDao().selectcontent(savedtext, 2, 3);
+
+
+        adapter1 = new DBAdapter(contentDBList1, new OnContentClicked() {
+            @Override
+            public void onRemoveClicked(ContentDB contentDB) {
+                database.getContentDao().delete(contentDB);
+            }
+
+            @Override
+            public void onJustClicked(ContentDB contentDB) {
+            }
+        });
+        adapter2 = new DBAdapter(contentDBList2, new OnContentClicked() {
+            @Override
+            public void onRemoveClicked(ContentDB contentDB) {
+                database.getContentDao().delete(contentDB);
+            }
+
+            @Override
+            public void onJustClicked(ContentDB contentDB) {
+            }
+        });
+        adapter3 = new DBAdapter(contentDBList3, new OnContentClicked() {
+            @Override
+            public void onRemoveClicked(ContentDB contentDB) {
+                database.getContentDao().delete(contentDB);
+            }
+
+            @Override
+            public void onJustClicked(ContentDB contentDB) {
+            }
+        });
+
+
+        layoutManager1 = new LinearLayoutManager(this);
+        layoutManager2 = new LinearLayoutManager(this);
+        layoutManager3 = new LinearLayoutManager(this);
+
+        binding.recyclerView1.setLayoutManager(layoutManager1);
+        binding.recyclerView1.setAdapter(adapter1);
+        binding.recyclerView2.setLayoutManager(layoutManager2);
+        binding.recyclerView2.setAdapter(adapter2);
+        binding.recyclerView3.setLayoutManager(layoutManager3);
+        binding.recyclerView3.setAdapter(adapter3);
+    }
+
+    private void initDatabase() {database = DatabaseManager.getInstance(this).getDatabase();}
 }

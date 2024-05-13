@@ -7,11 +7,23 @@
     android:background="#f7e3ae"
     tools:context=".Methodics.dekartsquare">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/inputField"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/rosemary"
+        android:text="Pppr v0.1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/inputField"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="15dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:hint="Введите вашу проблему/вопрос"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,6 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1"
+        android:background="@color/buttons"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +60,7 @@
 
         android:visibility="gone"
         android:layout_marginBottom="20dp"
-        android:src="@android:drawable/ic_dialog_email"
+        android:src="@android:drawable/ic_menu_recent_history"
         app:layout_constraintBottom_toTopOf="@+id/main_fab"
         app:layout_constraintEnd_toEndOf="@id/main_fab" />
 

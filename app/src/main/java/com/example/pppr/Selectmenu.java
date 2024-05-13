@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.pppr.Methodics.MPK;
 import com.example.pppr.Methodics.ironcube;
 import com.example.pppr.Methodics.dekartsquare;
 import com.example.pppr.Methodics.ZauProtiv;
@@ -26,6 +27,7 @@ public class Selectmenu extends AppCompatActivity {
         Button var2 = findViewById(R.id.var2);
         Button var3 = findViewById(R.id.var3);
         Button var4 = findViewById(R.id.var4);
+        Button var5 = findViewById(R.id.var5);
         TextView view = findViewById(R.id.View);
 
         view.setText(savedtext);
@@ -74,6 +76,17 @@ public class Selectmenu extends AppCompatActivity {
             public void onClick(View v) {
                 Intent a;
                 a = new Intent(Selectmenu.this, ZauProtiv.class);
+                a.putExtra("savedText", savedtext);
+                startActivity(a);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+            }
+        });
+        var5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a;
+                a = new Intent(Selectmenu.this, MPK.class);
                 a.putExtra("savedText", savedtext);
                 startActivity(a);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

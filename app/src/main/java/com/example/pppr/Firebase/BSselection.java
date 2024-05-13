@@ -5,12 +5,20 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.pppr.MainActivity;
+import com.example.pppr.Methodics.dekartsquare;
+import com.example.pppr.Room.database.Entity.ContentDB;
 import com.example.pppr.databinding.ActivityBsselectionBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +30,14 @@ public class BSselection extends AppCompatActivity {
     private BSselViewModel viewModel;
     private NameAdapter adapter;
     private boolean areFabsVisible;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityBsselectionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
 
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -45,9 +55,11 @@ public class BSselection extends AppCompatActivity {
             a = new Intent(BSselection.this, MakeQuestions.class);
             startActivity(a);
         });
+        /*
         binding.delete.setOnClickListener(v -> {
             viewModel.deleteUserQuestion();
         });
+        */
         binding.mainFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,5 +71,17 @@ public class BSselection extends AppCompatActivity {
         binding.childFab1.setOnClickListener(v -> {
             viewModel.deleteUserQuestion();
         });
+        binding.childFab2.setOnClickListener(v -> {
+            Intent a = new Intent(BSselection.this, BrainStorm.class);
+            System.out.println(a);
+            if(viewModel.Checkuserqueston(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+                a.putExtra("questionId", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                startActivity(a);}
+            else{
+                Toast.makeText(this, "Создайте вопрос", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 }

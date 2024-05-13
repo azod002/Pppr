@@ -38,6 +38,7 @@ public class BSselViewModel extends ViewModel {
 
     private MutableLiveData<List<Question>> questionsLiveData = new MutableLiveData<>();
     private DatabaseReference databaseReference;
+    private boolean flag;
 
     public BSselViewModel() {
         databaseReference = FirebaseDatabase.getInstance("https://pppr-c439f-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("questions");
@@ -78,6 +79,26 @@ public class BSselViewModel extends ViewModel {
                 // Обработка ошибок доступа к базе данных
             }
         });
+    }
+
+    public boolean Checkuserqueston(String userId){
+        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    flag = true;
+                } else {
+                    flag = false;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                flag = false;
+                System.err.println("Ошибка при получении данных: " + databaseError.getMessage());
+            }
+        });
+        return flag;
     }
 
     public LiveData<List<Question>> getQuestions() { return questionsLiveData; }
