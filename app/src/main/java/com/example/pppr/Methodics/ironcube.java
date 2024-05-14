@@ -39,7 +39,7 @@ public class ironcube extends AppCompatActivity {
 
         TextView view1 = findViewById(R.id.punchline);
         TextView view2 = findViewById(R.id.view2);
-        Button back = findViewById(R.id.backButton);
+        ImageView back = findViewById(R.id.backButton);
         ImageView gifImageView = findViewById(R.id.gifImageView);
 
 

@@ -38,6 +38,7 @@ public class dekartsquare extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager3;
     private RecyclerView.LayoutManager layoutManager4;
     private AppDatabase database;
+    private boolean areFabsVisible = false;
 
 
     @Override
@@ -107,6 +108,10 @@ public class dekartsquare extends AppCompatActivity {
         });
         binding.backButton.setOnClickListener(v -> {
             finish();
+        });
+        binding.questbutt.setOnClickListener(v -> {
+            areFabsVisible = !areFabsVisible;
+            binding.ans.setVisibility(areFabsVisible ? View.VISIBLE : View.GONE);
         });
 
 

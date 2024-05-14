@@ -30,6 +30,7 @@ import java.util.Calendar;
 public class AnsFromTime extends AppCompatActivity {
     private ActivityAnsFromTimeBinding binding;
     private Context context;
+    private boolean areFabsVisible = false;
 
     private static final String CHANNEL_ID = "reminder_notifications_channel";
     private static final int NOTIFICATION_PERMISSION_CODE = 101;
@@ -42,7 +43,7 @@ public class AnsFromTime extends AppCompatActivity {
 
 
 
-
+        initviews();
         binding.savetime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +59,16 @@ public class AnsFromTime extends AppCompatActivity {
                     Toast.makeText(AnsFromTime.this, "Пожалуйста, введите корректное количество времени", Toast.LENGTH_LONG).show();
                 }
             }
+        });
+    }
+
+    private void initviews() {
+        binding.backButton.setOnClickListener(v -> {
+            finish();
+        });
+        binding.questbutt.setOnClickListener(va -> {
+            areFabsVisible = !areFabsVisible;
+            binding.ans.setVisibility(areFabsVisible ? View.VISIBLE : View.GONE);
         });
     }
 

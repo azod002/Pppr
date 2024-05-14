@@ -4,11 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Room.database.SelectQuest">
+    tools:context=".Room.database.SelectQuest"
+    android:background="@color/main">
 
-    <Button
-        android:layout_width="100dp"
+    <View
+        android:id="@+id/view5"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/buttons"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="170dp"
+        android:fontFamily="@font/rosemary"
+        android:text="Истроия"
+        android:textColor="@color/text"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="50dp"
         android:layout_height="50dp"
+        android:src="@drawable/backbutton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

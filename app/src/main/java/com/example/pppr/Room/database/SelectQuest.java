@@ -32,11 +32,17 @@ public class SelectQuest extends AppCompatActivity {
         binding = ActivitySelectQuestBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
+        initview();
         initDatabase();
         initRecyclerView();
 
 
+    }
+
+    private void initview() {
+        binding.backButton.setOnClickListener(v -> {
+            finish();
+        });
     }
 
     private void initRecyclerView() {

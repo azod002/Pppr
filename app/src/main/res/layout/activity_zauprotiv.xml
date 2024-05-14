@@ -4,12 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Methodics.ZauProtiv">
+    tools:context=".Methodics.ZauProtiv"
+    android:background="@color/main">
+
+    <View
+        android:id="@+id/view9"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/buttons"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view1"
         android:layout_width="200dp"
-        android:layout_height="530dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="4dp"
+        android:background="#c9b98d"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,7 +28,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view2"
         android:layout_width="200dp"
-        android:layout_height="530dp"
+        android:layout_marginEnd="4dp"
+        android:layout_height="500dp"
+        android:background="#c9b98d"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,39 +42,50 @@
         android:layout_height="wrap_content"
         android:text="aboba"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.09" />
+        android:fontFamily="@font/rosemary"
+        android:textColor="@color/text"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/view9" />
 
-    <Button
+    <ImageView
         android:id="@+id/backButton"
-        android:layout_width="80dp"
+        android:layout_width="50dp"
         android:layout_height="50dp"
-        android:text="1"
+        android:src="@drawable/backbutton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageView
         android:id="@+id/butt1"
         android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
+        android:src="@drawable/addbutton"
+        android:layout_margin="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view1"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.228" />
-
-    <Button
+    <ImageView
         android:id="@+id/butt2"
         android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="368dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="35dp"
+        android:layout_margin="4dp"
+        android:src="@drawable/addbutton"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view2"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rosemary"
+        android:text="Список за и против"
+        android:textColor="@color/text"
+        android:textSize="25sp"
+        android:layout_marginTop="32dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.228" />
+        app:layout_constraintTop_toTopOf="@+id/view9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

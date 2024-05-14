@@ -15,6 +15,49 @@
         android:background="@color/buttons"/>
 
     <TextView
+        android:id="@+id/textView5"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/rosemary"
+        android:textColor="#202d41"
+        android:text="Решение ограниченное во времени"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/view3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/backbutton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/questbutt"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/question"
+        app:layout_constraintEnd_toEndOf="@+id/view3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ans"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/buttons"
+        android:text="ABOBA"
+        android:textSize="20sp"
+        android:visibility="gone"
+        android:textColor="#202d41"
+        android:fontFamily="@font/rosemary"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -69,15 +112,15 @@
         app:layout_constraintStart_toEndOf="@+id/hours"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
-    <Button
+    <ImageView
         android:id="@+id/savetime"
         android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="92dp"
-        android:text="Save"
+        android:layout_height="100dp"
+        android:src="@drawable/savebutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

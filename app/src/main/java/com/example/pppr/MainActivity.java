@@ -13,22 +13,24 @@ import com.example.pppr.Firebase.BSselection;
 import com.example.pppr.Methodics.AnsFromTime;
 import com.example.pppr.Room.RoomDebug;
 import com.example.pppr.Room.database.SelectQuest;
+import com.example.pppr.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     private EditText inputField;
     private String savedText;
+    private ActivityMainBinding binding;
 
     private boolean areFabsVisible;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
 
         inputField = findViewById(R.id.inputField);
-        Button saveButton = findViewById(R.id.saveButton);
         FloatingActionButton mainFab = findViewById(R.id.main_fab);
         FloatingActionButton childFab1 = findViewById(R.id.child_fab_1);
         FloatingActionButton childFab2 = findViewById(R.id.child_fab_2);
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
         else{
-            saveButton.setOnClickListener(new View.OnClickListener() {
+            binding.saveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent a;
