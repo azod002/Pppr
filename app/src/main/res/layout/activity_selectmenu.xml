@@ -7,70 +7,152 @@
     android:background="#f7e3ae"
     tools:context=".Selectmenu">
 
-    <Button
+    <View
+        android:id="@+id/view10"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/buttons"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
         android:id="@+id/backButton"
-        android:layout_width="80dp"
+        android:layout_width="50dp"
         android:layout_height="50dp"
-        android:text="1"
+        android:src="@drawable/backbutton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/var1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="var1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.124"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <Button
-        android:id="@+id/var2"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="var2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.194"
-        tools:layout_editor_absoluteX="113dp" />
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/rosemary"
+        android:text="Меню выбора методики"
+        android:textColor="#202d41"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/var3"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-
-        android:text="var3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.264"
-         />
-
-    <Button
-        android:id="@+id/var4"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="var4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.334"
-        />
-
-    <Button
-        android:id="@+id/var5"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="var4"
-        app:layout_constraintTop_toBottomOf="@+id/var4" />
 
     <TextView
         android:id="@+id/View"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="ABOBA"
-        android:textColor="#202d41"
         android:fontFamily="@font/rosemary"
-        android:textSize="75sp"/>
+        android:text="ABOBA"
+        android:layout_margin="8dp"
+        android:textColor="#202d41"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/view10" />
+
+    <TextView
+        android:id="@+id/var1"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="SWOT анализ"
+        android:gravity="center"
+        android:fontFamily="@font/rosemary"
+        android:textColor="#202d41"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_margin="16dp"
+        android:background="@color/buttons"
+        app:layout_constraintTop_toBottomOf="@+id/View"
+        />
+
+    <TextView
+        android:id="@+id/var2"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:fontFamily="@font/rosemary"
+        android:textColor="#202d41"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:text="Куб иронии"
+        android:background="@color/buttons"
+        app:layout_constraintTop_toBottomOf="@+id/var1"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/var3"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_margin="16dp"
+        android:background="@color/buttons"
+        android:gravity="center"
+        android:fontFamily="@font/rosemary"
+        android:textColor="#202d41"
+        android:textSize="30sp"
+        android:text="Правило 10/10/10"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/var2"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/var4"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_margin="16dp"
+        android:background="@color/buttons"
+        android:gravity="center"
+        android:fontFamily="@font/rosemary"
+        android:textColor="#202d41"
+        android:textSize="30sp"
+        android:text="Список за и против"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/var3"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/var5"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_margin="16dp"
+        android:background="@color/buttons"
+        android:gravity="center"
+        android:fontFamily="@font/rosemary"
+        android:textColor="#202d41"
+        android:textSize="30sp"
+        android:text="Метод Уолта Диснея"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/var4"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/var6"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_margin="16dp"
+        android:background="@color/buttons"
+        android:gravity="center"
+        android:fontFamily="@font/rosemary"
+        android:textColor="#202d41"
+        android:textSize="30sp"
+        android:text="ограничение во времени"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/var5"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/var7"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_margin="16dp"
+        android:background="@color/buttons"
+        android:gravity="center"
+        android:fontFamily="@font/rosemary"
+        android:textColor="#202d41"
+        android:textSize="30sp"
+        android:text="Квадрат декарта"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/var6"
+        tools:layout_editor_absoluteX="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

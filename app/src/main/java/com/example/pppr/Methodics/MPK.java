@@ -30,6 +30,7 @@ public class MPK extends AppCompatActivity {
     private AppDatabase database;
     private int k=0;
     private ActivityMpkBinding binding;
+    private boolean areFabsVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +105,10 @@ public class MPK extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
 
             }
+        });
+        binding.questbutt.setOnClickListener(v -> {
+            areFabsVisible = !areFabsVisible;
+            binding.ans.setVisibility(areFabsVisible ? View.VISIBLE : View.GONE);
         });
 
     }

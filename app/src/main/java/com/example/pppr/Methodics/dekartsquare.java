@@ -108,6 +108,7 @@ public class dekartsquare extends AppCompatActivity {
         });
         binding.backButton.setOnClickListener(v -> {
             finish();
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         });
         binding.questbutt.setOnClickListener(v -> {
             areFabsVisible = !areFabsVisible;

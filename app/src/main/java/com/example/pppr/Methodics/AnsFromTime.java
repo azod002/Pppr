@@ -65,6 +65,7 @@ public class AnsFromTime extends AppCompatActivity {
     private void initviews() {
         binding.backButton.setOnClickListener(v -> {
             finish();
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         });
         binding.questbutt.setOnClickListener(va -> {
             areFabsVisible = !areFabsVisible;

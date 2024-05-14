@@ -88,7 +88,7 @@
         android:gravity="center"
         android:fontFamily="@font/rosemary"
         android:textColor="@color/text"
-        android:layout_marginTop="4dp"
+        android:layout_margin="8dp"
         app:layout_constraintTop_toBottomOf="@+id/view8" />
 
     <TextView
@@ -115,6 +115,39 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:fontFamily="@font/rosemary"
+        android:textColor="#202d41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10 минут"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view1"
+        app:layout_constraintStart_toEndOf="@+id/butt1" />
+
+    <TextView
+        android:fontFamily="@font/rosemary"
+        android:textColor="#202d41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10 часов"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view2"
+        app:layout_constraintStart_toEndOf="@+id/butt2" />
+
+    <TextView
+        android:fontFamily="@font/rosemary"
+        android:textColor="#202d41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10 лет"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view3"
+        app:layout_constraintStart_toEndOf="@+id/butt3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

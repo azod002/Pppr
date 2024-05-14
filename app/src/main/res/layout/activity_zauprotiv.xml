@@ -88,4 +88,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view9" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rosemary"
+        android:text="список за"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/text"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view1"
+        app:layout_constraintStart_toEndOf="@+id/butt1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rosemary"
+        android:text="список против"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/text"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view2"
+        app:layout_constraintEnd_toStartOf="@+id/butt2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
