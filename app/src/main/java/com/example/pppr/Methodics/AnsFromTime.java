@@ -26,6 +26,7 @@ import com.example.pppr.databinding.ActivityAnsFromTimeBinding;
 
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
 public class AnsFromTime extends AppCompatActivity {
     private ActivityAnsFromTimeBinding binding;
@@ -40,6 +41,19 @@ public class AnsFromTime extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAnsFromTimeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+        List<String> numbers = Arrays.asList("a", "b", "c", "aboba");
+        String formattedString = String.format("List: %s", numbers.toString());
+        System.out.println(formattedString);
+
+
+
+
+
+
+
+
 
 
 

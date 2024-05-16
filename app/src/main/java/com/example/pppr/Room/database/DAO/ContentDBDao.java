@@ -28,6 +28,9 @@ public interface ContentDBDao {
     @Query("SELECT * FROM CONTENTDB")
     List<ContentDB> findAll();
 
+    @Query("SELECT content FROM ContentDB WHERE question = :question AND Metnum = :Metnum AND idofview = :idofview")
+    List<String> fetchContentByParameters(String question, int Metnum, int idofview);
+
     @Query("SELECT DISTINCT question FROM ContentDB")
     List<String> findAllDistinctQuestions();
 

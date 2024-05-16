@@ -5,15 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
+import com.example.pppr.MegaAnalis.MegaAnalis;
 import com.example.pppr.Methodics.AnsFromTime;
 import com.example.pppr.Methodics.MPK;
 import com.example.pppr.Methodics.ironcube;
 import com.example.pppr.Methodics.dekartsquare;
 import com.example.pppr.Methodics.ZauProtiv;
 import com.example.pppr.Methodics.Tens;
+import com.example.pppr.Methodics.RealDekart;
 import com.example.pppr.databinding.ActivitySelectmenuBinding;
 
 public class Selectmenu extends AppCompatActivity {
@@ -95,6 +95,20 @@ public class Selectmenu extends AppCompatActivity {
         binding.var6.setOnClickListener(v -> {
             Intent a;
             a = new Intent(Selectmenu.this, AnsFromTime.class);
+            a.putExtra("savedText", savedtext);
+            startActivity(a);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        });
+        binding.var7.setOnClickListener(v -> {
+            Intent a;
+            a = new Intent(Selectmenu.this, RealDekart.class);
+            a.putExtra("savedText", savedtext);
+            startActivity(a);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        });
+        binding.MegaAnalis.setOnClickListener(v -> {
+            Intent a;
+            a = new Intent(Selectmenu.this, MegaAnalis.class);
             a.putExtra("savedText", savedtext);
             startActivity(a);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
