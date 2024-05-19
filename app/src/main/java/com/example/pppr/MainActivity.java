@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.pppr.Auth.Register;
 import com.example.pppr.Firebase.BSselection;
@@ -31,10 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         inputField = findViewById(R.id.inputField);
-        FloatingActionButton mainFab = findViewById(R.id.main_fab);
-        FloatingActionButton childFab1 = findViewById(R.id.child_fab_1);
-        FloatingActionButton childFab2 = findViewById(R.id.child_fab_2);
-        FloatingActionButton childFab3 = findViewById(R.id.child_fab_3);
 
 
         if(FirebaseAuth.getInstance().getCurrentUser() == null){
@@ -49,36 +46,32 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent a;
                     savedText = inputField.getText().toString();
-                    a = new Intent(MainActivity.this, Selectmenu.class);
-                    a.putExtra("savedText", savedText);
-                    startActivity(a);
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    if(!savedText.isEmpty()){
+                        a = new Intent(MainActivity.this, Selectmenu.class);
+                        a.putExtra("savedText", savedText);
+                        startActivity(a);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);}
                 }
 
             });
-            mainFab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    areFabsVisible = !areFabsVisible;
-                    childFab1.setVisibility(areFabsVisible ? View.VISIBLE : View.GONE);
-                    childFab2.setVisibility(areFabsVisible ? View.VISIBLE : View.GONE);
-                    childFab3.setVisibility(areFabsVisible ? View.VISIBLE : View.GONE);                }
-            });
-            childFab2.setOnClickListener(v -> {
+            binding.imageView2.setOnClickListener(v -> {
+                //profile
                 Intent a;
                 savedText = inputField.getText().toString();
-                a = new Intent(MainActivity.this, AnsFromTime.class);
+                a = new Intent(MainActivity.this, profile.class);
                 a.putExtra("savedText", savedText);
                 startActivity(a);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             });
-            childFab1.setOnClickListener(v ->{
+            binding.imageView3.setOnClickListener(v ->{
+                //history
                 Intent a;
                 a = new Intent(MainActivity.this, SelectQuest.class);
                 startActivity(a);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             });
-            childFab3.setOnClickListener(v ->{
+            binding.imageView.setOnClickListener(v ->{
+                //BrainStorm
                 Intent a;
                 savedText = inputField.getText().toString();
                 a = new Intent(MainActivity.this, BSselection.class);

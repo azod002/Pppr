@@ -2,8 +2,11 @@ package com.example.pppr.MegaAnalis;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 
 import com.example.pppr.MegaAnalis.classes.ChatRequest;
@@ -13,8 +16,11 @@ import com.example.pppr.MegaAnalis.classes.mpk;
 import com.example.pppr.MegaAnalis.classes.swot;
 import com.example.pppr.MegaAnalis.classes.tens;
 import com.example.pppr.MegaAnalis.classes.zauprotiv;
+import com.example.pppr.Methodics.dekartsquare;
+import com.example.pppr.R;
 import com.example.pppr.Room.database.AppDatabase;
 import com.example.pppr.Room.database.DatabaseManager;
+import com.example.pppr.Room.database.Entity.ContentDB;
 import com.example.pppr.databinding.ActivityMegaAnalisBinding;
 
 import java.util.Arrays;
@@ -32,7 +38,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MegaAnalis extends AppCompatActivity {
     private ActivityMegaAnalisBinding binding;
     private AppDatabase database;
-    private static final String API_KEY = "sk-proj-KQBhDXrWGzXC1MexLElcT3BlbkFJBiokgEuj8R0xpv3NKGUN";
+    private static final String API_KEY = "";
     //sk-proj-JmDMCx3vmcxiYvocsvq4T3BlbkFJCELhns5pN6PAmAUf983n
     private static final String BASE_URL = "https://api.openai.com";
     @Override
@@ -74,6 +80,16 @@ public class MegaAnalis extends AppCompatActivity {
         List<String> c5 = database.getContentDao().fetchContentByParameters(savedtext, 5, 3);
         mpk mpk = new mpk(a5, b5, c5);
         System.out.println(mpk);
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MegaAnalis.this);
+        builder.setMessage("")
+                .setTitle("помните, что все написанное лишь РЕКОМЕНДАЦИЯ")
+                .setPositiveButton("Ок", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    }
+                });
+        AlertDialog dialog = builder.create();
 
         System.out.println("BEGIN");
         String prompt = String.format("You are an expert consultant providing a recommendation to solve a user's problem. The user will provide the problem description and additional data using various problem-solving techniques. Your task is to analyze the provided data and give a concise recommendation in russian.\n" +
@@ -137,27 +153,35 @@ public class MegaAnalis extends AppCompatActivity {
 
 
         Call<ChatResponse> call = api.getChatResponse(chatRequest);
-        call.enqueue(new Callback<ChatResponse>() {
-            @Override
-            public void onResponse(Call<ChatResponse> call, Response<ChatResponse> response) {
-                if (response.isSuccessful()) {
-                    ChatResponse chatResponse = response.body();
-                    if (chatResponse != null) {
-                        String chatReply = chatResponse.getChoices().get(0).getMessage().getContent();
-                        binding.response.setText(chatReply);
-                        Log.d("ChatGPT", "Response: " + chatReply);
+
+        binding.getanalis.setOnClickListener(v -> {
+            dialog.show();
+            binding.getanalis.setVisibility(false ? View.VISIBLE : View.GONE);
+            call.enqueue(new Callback<ChatResponse>() {
+                @Override
+                public void onResponse(Call<ChatResponse> call, Response<ChatResponse> response) {
+                    if (response.isSuccessful()) {
+                        ChatResponse chatResponse = response.body();
+                        if (chatResponse != null) {
+                            String chatReply = chatResponse.getChoices().get(0).getMessage().getContent();
+                            binding.response.setText(chatReply);
+                            Log.d("ChatGPT", "Response: " + chatReply);
+                        }
+                    } else {
+                        Log.e("ChatGPT", "Request failed: " + response.code());
                     }
-                } else {
-                    Log.e("ChatGPT", "Request failed: " + response.code());
                 }
-            }
 
-            @Override
-            public void onFailure(Call<ChatResponse> call, Throwable t) {
-                Log.e("ChatGPT", "Error: " + t.getMessage());
-            }
+                @Override
+                public void onFailure(Call<ChatResponse> call, Throwable t) {
+                    Log.e("ChatGPT", "Error: " + t.getMessage());
+                }
+            });});
+
+        binding.backButton.setOnClickListener(v -> {
+            finish();
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         });
-
     }
 
 

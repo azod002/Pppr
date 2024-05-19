@@ -43,20 +43,6 @@ public class AnsFromTime extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-        List<String> numbers = Arrays.asList("a", "b", "c", "aboba");
-        String formattedString = String.format("List: %s", numbers.toString());
-        System.out.println(formattedString);
-
-
-
-
-
-
-
-
-
-
-
         initviews();
         binding.savetime.setOnClickListener(new View.OnClickListener() {
             @Override
