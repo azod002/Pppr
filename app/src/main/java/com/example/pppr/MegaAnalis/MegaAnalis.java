@@ -39,7 +39,7 @@ public class MegaAnalis extends AppCompatActivity {
     private ActivityMegaAnalisBinding binding;
     private AppDatabase database;
     private static final String API_KEY = "";
-    //sk-proj-JmDMCx3vmcxiYvocsvq4T3BlbkFJCELhns5pN6PAmAUf983n
+
     private static final String BASE_URL = "https://api.openai.com";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
