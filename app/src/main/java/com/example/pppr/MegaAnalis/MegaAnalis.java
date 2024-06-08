@@ -9,8 +9,10 @@ import android.util.Log;
 import android.view.View;
 
 
-import com.example.pppr.MegaAnalis.classes.ChatRequest;
+
 import com.example.pppr.MegaAnalis.classes.ChatResponse;
+import com.example.pppr.MegaAnalis.classes.PromptRequest;
+import com.example.pppr.MegaAnalis.classes.PromptResponse;
 import com.example.pppr.MegaAnalis.classes.dekart;
 import com.example.pppr.MegaAnalis.classes.mpk;
 import com.example.pppr.MegaAnalis.classes.swot;
@@ -38,9 +40,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MegaAnalis extends AppCompatActivity {
     private ActivityMegaAnalisBinding binding;
     private AppDatabase database;
+
+    private ApiService apiService;
     private static final String API_KEY = "sk-proj-KQBhDXrWGzXC1MexLElcT3BlbkFJBiokgEuj8R0xpv3NKGUN";
 
-    private static final String BASE_URL = "https://api.openai.com";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,51 +140,54 @@ public class MegaAnalis extends AppCompatActivity {
                 .addInterceptor(loggingInterceptor)
                 .build();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build();
 
-        OpenAIApi api = retrofit.create(OpenAIApi.class);
+
+
 
         String m1 = "gpt-3.5-turbo";
         String m2 = "gpt-4o";
 
+        String baseUrl = "http://37.221.127.152:5000/";
+        apiService = RetrofitClient.getClient(baseUrl).create(ApiService.class);
 
-        ChatRequest.Message message = new ChatRequest.Message("user", prompt);
-        ChatRequest chatRequest = new ChatRequest(m2, Arrays.asList(message));
 
 
-        Call<ChatResponse> call = api.getChatResponse(chatRequest);
+
+
 
         binding.getanalis.setOnClickListener(v -> {
             dialog.show();
             binding.getanalis.setVisibility(false ? View.VISIBLE : View.GONE);
-            call.enqueue(new Callback<ChatResponse>() {
-                @Override
-                public void onResponse(Call<ChatResponse> call, Response<ChatResponse> response) {
-                    if (response.isSuccessful()) {
-                        ChatResponse chatResponse = response.body();
-                        if (chatResponse != null) {
-                            String chatReply = chatResponse.getChoices().get(0).getMessage().getContent();
-                            binding.response.setText(chatReply);
-                            Log.d("ChatGPT", "Response: " + chatReply);
-                        }
-                    } else {
-                        Log.e("ChatGPT", "Request failed: " + response.code());
-                    }
-                }
+            sendPrompt(prompt);
+        });
 
-                @Override
-                public void onFailure(Call<ChatResponse> call, Throwable t) {
-                    Log.e("ChatGPT", "Error: " + t.getMessage());
-                }
-            });});
+
 
         binding.backButton.setOnClickListener(v -> {
             finish();
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        });
+    }
+
+    private void sendPrompt(String prompt) {
+        PromptRequest promptRequest = new PromptRequest(prompt);
+        Call<PromptResponse> call = apiService.sendPrompt(promptRequest);
+
+        call.enqueue(new Callback<PromptResponse>() {
+            @Override
+            public void onResponse(Call<PromptResponse> call, Response<PromptResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    binding.response.setText(response.body().getReply());
+                } else {
+                    binding.response.setText("Error: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PromptResponse> call, Throwable t) {
+                Log.e("MainActivity", "Error", t);
+                binding.response.setText("Failure: " + t.getMessage());
+            }
         });
     }
 
