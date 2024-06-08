@@ -42,7 +42,6 @@ public class MegaAnalis extends AppCompatActivity {
     private AppDatabase database;
 
     private ApiService apiService;
-    private static final String API_KEY = "11";
 
 
     @Override
@@ -131,14 +130,7 @@ public class MegaAnalis extends AppCompatActivity {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(chain -> {
-                    return chain.proceed(chain.request().newBuilder()
-                            .addHeader("Authorization", "Bearer " + API_KEY)
-                            .build());
-                })
-                .addInterceptor(loggingInterceptor)
-                .build();
+
 
 
 
