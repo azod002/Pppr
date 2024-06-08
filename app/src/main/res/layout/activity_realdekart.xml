@@ -14,6 +14,55 @@
         android:background="@color/buttons"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rosemary"
+        android:text="ПЛЮСЫ, если это произойдет"
+        android:textColor="@color/text"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="4dp"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view1"
+        app:layout_constraintStart_toEndOf="@+id/button1" />
+
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:fontFamily="@font/rosemary"
+        android:text="ПЛЮСЫ, если это не произойдет"
+        android:textColor="@color/text"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view2"
+        app:layout_constraintEnd_toStartOf="@+id/button2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rosemary"
+        android:text="МИНУСЫ, если это произойдет"
+        android:textColor="@color/text"
+        android:textSize="10sp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_view3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rosemary"
+        android:text="МИНУСЫ, если это не произойдет"
+        android:textColor="@color/text"
+        android:textSize="10sp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_view4" />
 
     <ImageView
         android:id="@+id/backButton"
@@ -49,15 +98,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view2"
-        android:layout_marginEnd="4dp"
         android:layout_width="200dp"
-        android:background="#c9b98d"
         android:layout_height="150dp"
+        android:layout_marginEnd="4dp"
+        android:background="#c9b98d"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35"
-        />
+        app:layout_constraintVertical_bias="0.35" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view4"

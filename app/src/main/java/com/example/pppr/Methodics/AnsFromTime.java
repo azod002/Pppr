@@ -63,6 +63,8 @@ public class AnsFromTime extends AppCompatActivity {
     }
 
     private void initviews() {
+        binding.hours.setText("0");
+        binding.mins.setText("0");
         binding.backButton.setOnClickListener(v -> {
             finish();
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -89,7 +91,7 @@ public class AnsFromTime extends AppCompatActivity {
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, alarmTime, pendingIntent);
         }
 
-        Toast.makeText(this, "Уведомления запланированы на " + Arrays.toString(percentages) + "% времени.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Уведомления запланированы до конца указанного времени", Toast.LENGTH_SHORT).show();
     }
 
 }

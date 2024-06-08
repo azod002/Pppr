@@ -44,12 +44,15 @@ public class BrainStormViewModel {
                 Map<String, Content> contentMap = new HashMap<>();
                 String name = "";
                 String id = "";
+                String uidlist = "";
 
                 for (DataSnapshot childSnapshot : snapshot.getChildren()) {
                     if ("name".equals(childSnapshot.getKey())) {
                         name = childSnapshot.getValue(String.class);
                     } else if ("id".equals(childSnapshot.getKey())) {
                         id = childSnapshot.getValue(String.class);
+                    } else if ("uidlist".equals(childSnapshot.getKey())){
+                        uidlist = childSnapshot.getValue(String.class);
                     }
                     else {
                         Content content = childSnapshot.getValue(Content.class);

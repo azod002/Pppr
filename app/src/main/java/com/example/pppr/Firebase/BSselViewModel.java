@@ -39,6 +39,7 @@ public class BSselViewModel extends ViewModel {
     private MutableLiveData<List<Question>> questionsLiveData = new MutableLiveData<>();
     private DatabaseReference databaseReference;
     private boolean flag;
+    //rr5
 
     public BSselViewModel() {
         databaseReference = FirebaseDatabase.getInstance("https://pppr-c439f-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("questions");
@@ -48,7 +49,9 @@ public class BSselViewModel extends ViewModel {
                 List<Question> questionsList = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Question question = snapshot.getValue(Question.class);
-                    if (question != null && question.getName() != null) {
+                    //question != null && question.getName() != null && (question.getUidlist().contains(FirebaseAuth.getInstance().getUid().toString())
+                    System.out.println(question);
+                    if (question != null && question.getName() != null && (question.getUidlist().contains(FirebaseAuth.getInstance().getUid().toString()) || question.getUidlist().contains("all"))) {
                         questionsList.add(question);
                     }
                 }

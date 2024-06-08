@@ -51,13 +51,12 @@
         app:layout_constraintVertical_bias="0.327"
         tools:layout_editor_absoluteX="-2dp" />
 
-    <Button
+    <ImageView
         android:id="@+id/loginbutt"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="40dp"
-        android:background="@color/text"
-        android:text="login"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="24dp"
+       android:src="@drawable/savebutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

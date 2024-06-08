@@ -38,7 +38,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MegaAnalis extends AppCompatActivity {
     private ActivityMegaAnalisBinding binding;
     private AppDatabase database;
-    private static final String API_KEY = "";
+    private static final String API_KEY = "sk-proj-KQBhDXrWGzXC1MexLElcT3BlbkFJBiokgEuj8R0xpv3NKGUN";
 
     private static final String BASE_URL = "https://api.openai.com";
     @Override
@@ -149,7 +149,7 @@ public class MegaAnalis extends AppCompatActivity {
 
 
         ChatRequest.Message message = new ChatRequest.Message("user", prompt);
-        ChatRequest chatRequest = new ChatRequest(m1, Arrays.asList(message));
+        ChatRequest chatRequest = new ChatRequest(m2, Arrays.asList(message));
 
 
         Call<ChatResponse> call = api.getChatResponse(chatRequest);
