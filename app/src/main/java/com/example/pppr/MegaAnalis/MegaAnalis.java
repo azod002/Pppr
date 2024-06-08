@@ -42,7 +42,7 @@ public class MegaAnalis extends AppCompatActivity {
     private AppDatabase database;
 
     private ApiService apiService;
-    private static final String API_KEY = "sk-proj-KQBhDXrWGzXC1MexLElcT3BlbkFJBiokgEuj8R0xpv3NKGUN";
+    private static final String API_KEY = "11";
 
 
     @Override
